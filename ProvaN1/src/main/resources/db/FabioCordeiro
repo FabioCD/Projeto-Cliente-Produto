@@ -1,0 +1,21 @@
+create table cliente(
+
+			id_cliente serial not null primary key,
+			nome_cliente varchar (50),
+			
+);
+create table PedidoProduto(
+	id_pp serial not null primary key,
+	dataSolicitacao_pp varchar (50),
+	dataEntrega_pp varchar (50),
+	valorTotal_pp INTEGER,
+	status_pp varchar (50),
+	cordeiro_pp varchar (50),
+	id_cliente_fk INTEGER not null,
+ 	FOREIGN KEY (id_cliente_fk) REFERENCES cliente (id_cliente)
+);
+insert into cliente (nome_cliente) values ('Joaosinho');
+insert into PedidoProduto (dataSolicitacao_pp,dataEntrega_pp,valorTotal_pp,status_pp,cordeiro_pp,id_cliente_fk)
+values ('10/08/20','10/11/21',111.11,'Processado','Sera entregue dentro do prazo',1);
+Select * From cliente
+Select * From PedidoProduto

@@ -1,0 +1,106 @@
+<div class="container">
+	<h1>             <pre> 		   	 Fabio Cordeiro Damascena_</pre></h1>
+	<form>
+		<div class="card-header">
+			<div class="low">
+				<div class="col-8" style="color: white">
+					Pedido
+				</div>
+				<div class="col-4">
+					<button type="button" class="btn btn-primary" (click)="adicionar()">Adicionar</button> |
+					<button type="button" class="btn btn-warning" (click)="alterar()">Alterar</button> |
+					<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button> |
+				</div>
+			</div>
+		</div>
+		
+		<div class="alter alter-primary" role="alert">
+			{{mens}}
+		</div>
+		
+		<div class="card-body">
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="inputCodigo">Codigo</label>
+					<input type="number" class="form-control" name="inputCodigo" [(ngModel)]="obj.id">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputNome">Data da Solicitacao</label><br>
+					<p-calendar id="teste" name="teste" [(ngModel)]="obj.dataSolicitacao" dateFormat="dd/mm/yy" ></p-calendar>
+                </div>
+              
+				<div class="form-group col-md-4">
+       			 <label for="inputNome">Valor total</label>
+           				
+           				 <input type="" class="form-control" name="inputvalorTotal" [(ngModel)]="obj.valorTotal" placeholder="Valor Total">   
+            				   
+    			</div>
+                <div class="form-group col-md-6">
+				
+					<label for="inputNome">Status</label><br>
+				<!--	<input type="text" class="form-control" name="inputstatus" [(ngModel)]="obj.status">-->
+					<select  name="select" class="ls-select" style="width:300px" [(ngModel)]="obj.status" placeholder="Selecione o Status">
+						<option value="Aberto">Aberto</option> 
+						<option value="Cancelado">Cancelado</option>
+						<option value="Processado">Processado</option>
+						<option value="Entregue">Entregue</option>
+					  </select>
+					
+				<!--	<p-listbox id="teste" name="teste" [options]="status" [(ngModel)]="obj.status" optionLabel="name"></p-listbox>-->
+                </div>
+                <div class="form-group col-md-6">
+					<label for="inputNome">Data da entrega</label><br>
+				<!--	<input type="date" class="form-control" name="inputdataEntrega" [(ngModel)]="obj.dataEntrega">-->
+					<p-calendar id="te" name="te" [(ngModel)]="obj.dataEntrega"  dateFormat="dd/mm/yy"  ></p-calendar>
+                </div>
+                <div class="form-group col-md-6">
+					<label for="inputNome">Observaçoes</label>
+					<input type="text" class="form-control" name="inputcordeiro" [(ngModel)]="obj.cordeiro">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputCliente">Selecione o Cliente</label>
+					<select class="form-control" name="inputCliente" id="inputCliente"  on-change="atribuir(a.value)" #a>
+						<option *ngFor="let objCliente of listaCliente" value="{{objCliente.id}}"[selected]="objCliente.id === obj.cliente.id" >{{objCliente.nome}}</option>
+						<!--~]<option ng-selected="objCliente">{{objCliente.nome}}</option>-->
+					</select>
+				</div>
+				
+			<!--	<h3>Selecione o Cliente</h3>
+				<p-autoComplete   [size]="30"
+    				[minLength]="1" placeholder="selecine o cliente" [dropdown]="true">
+    					<ng-template let-brand pTemplate="nome" >
+
+					<div class="form-group col-md-6" style="border-bottom:1px solid #D5D5D5">
+						
+            		<div style="font-size:18px;float:right;margin:10px 10px 0 0"></div>
+        		</div>
+    				</ng-template>
+				</p-autoComplete>-->
+				
+         </div>	
+			
+			<div class="card">
+				<div class="card-body">
+					<table class="table">
+						<th scope="col"> Codigo </th>
+                        <th scope="col"> Data da Solicitacao </th>
+                        <th scope="col"> Valor total </th>
+                        <th scope="col"> Status </th>
+                        <th scope="col"> Data da entrega </th>
+						<th scope="col"> Cliente </th>
+						<th scope="col"> ... </th>
+						<tr *ngFor="let obj of lista">
+							<td>{{obj.id}}</td>
+                            <td>{{obj.dataSolicitacao}}</td>
+                            <td>{{obj.valorTotal}}</td>
+                            <td>{{obj.status}}</td>
+                            <td>{{obj.dataEntrega}}</td>
+							<td>{{obj.cliente.nome}}</td>
+						    <td><button type="button" class="btn btn-secondary" (click)="carregarDados(obj)">Carregar</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
